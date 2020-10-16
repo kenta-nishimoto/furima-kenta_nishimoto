@@ -1,4 +1,10 @@
-<%= render "shared/second-header"%>
+    <% if user_signed_in? %>
+      <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li> 
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
+      <% else %>
+      <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
+      <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
+       <% end %>
 
 <%# 「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
 <%= form_with model: モデル名, url: 新規登録機能へのパス, class: 'registration-main', local: true do |f| %>
