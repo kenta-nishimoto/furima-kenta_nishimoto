@@ -13,7 +13,7 @@ class Item < ApplicationRecord
 
   # 金額の範囲
   validates_inclusion_of :price, in: 300..9_999_999, message: 'Out of setting range'
- # ..:rubyの範囲オブジェクト　https://docs.ruby-lang.org/ja/latest/class/Range.html
+ # ..:rubyの範囲オブジェクト https://docs.ruby-lang.org/ja/latest/class/Range.html
 
   # 選択関係で「---」のままになっていないか検証
   with_options numericality: { other_than: 0, message: 'Select' } do
@@ -24,7 +24,7 @@ class Item < ApplicationRecord
     validates :scheduled_delivery_id
   end
 
-  #　<<アクティブハッシュの設定関連>>
+  #<<アクティブハッシュの設定関連>>
   belongs_to_active_hash :category
   belongs_to_active_hash :sales_status
   belongs_to_active_hash :shipping_fee_status
@@ -36,5 +36,6 @@ class Item < ApplicationRecord
 
   # <<アソシエーション>>
   belongs_to :user
+  has_one :order
 
 end

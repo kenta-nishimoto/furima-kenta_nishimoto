@@ -3,9 +3,9 @@ class ItemsController < ApplicationController
  # deviseのヘルパーメソッド。ログインしていなければ、ログイン画面へ遷移させる。
  # 理由：非会員が出品できてしまうため
 
-  def index
-
-  end
+ def index
+  @items = Item.all.order(created_at: :desc)
+end
 
   def new
     @item = Item.new
