@@ -9,15 +9,12 @@ FactoryBot.define do
     prefecture_id { 1 }
     scheduled_delivery_id { 1 }
     association :user
-    
+
     trait :image do
       image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample.png')) }
+  # chatappと同様にサンプル画像の準備を忘れないようにしましょう
     end
 
-    trait :sold_out do
-      after(:create) do |item|
-        create(:item_transaction, item: item, user: create(:user))
-      end
-    end
+
   end
 end
